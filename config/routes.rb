@@ -7,7 +7,17 @@ Rails.application.routes.draw do
   #   get "/photos" => "photos#index"
   # end
   namespace :api do 
-    get "/products_url" => "products#products_action"
-    get "/single_product_url" => "products#single_product"
+    get "/products" => "products#index"
+
+    get "/products/:id" => "products#show"
+
+    # get "/any_product_url" => "products#any_product"
+
+    post "/products" => "products#create"
+
+    patch "/products/:id" => "products#update"
+
+    delete "/products/:id" => "products#destroy"
+  
   end 
 end
