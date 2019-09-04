@@ -5,6 +5,9 @@
   price: @product.price,
   image_url: @product.image_url,
   description: @product.description
+  formatted: {
+    price: @product.is_discounted?
+  }
 }
 
 #here we need an instance variable to access each instance variable
