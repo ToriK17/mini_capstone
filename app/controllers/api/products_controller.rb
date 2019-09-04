@@ -9,11 +9,7 @@ class Api::ProductsController < ApplicationController
     render 'show.json.jb'  
   end
 
-  # def any_product
-  #   # user_input = params[:choice_product]
-  #   @message = "Your product is "
-  #   render 'choice_product.json.jb'
-  # end
+  
 
   def create
     @product = Product.new( 
@@ -22,8 +18,11 @@ class Api::ProductsController < ApplicationController
       image_url: params[:image_url],
       description: params[:description]
       )
-    @product.save
-    render 'show.json.jb'
+    if @product.save
+      render 'show.json.jb'
+    else 
+      render json: {errors: @product.errors.full_messages}, status: :unprocessable_entity #422
+    end   
   end
 
   def update

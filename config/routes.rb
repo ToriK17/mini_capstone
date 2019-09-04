@@ -11,8 +11,6 @@ Rails.application.routes.draw do
 
     get "/products/:id" => "products#show"
 
-    # get "/any_product_url" => "products#any_product"
-
     post "/products" => "products#create"
 
     patch "/products/:id" => "products#update"
