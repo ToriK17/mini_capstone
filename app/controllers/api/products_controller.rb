@@ -1,47 +1,49 @@
 class Api::ProductsController < ApplicationController
   def index
-    @products = Product.all
+    @products = Product.where("name iLIKE ?", "%#{params[:name]}%")
     render 'index.json.jb'
   end
 
   def show
-    @product = Product.find_by(id: params[:id])
-    render 'show.json.jb'  
+    @product = Product.find(params[:id])
+    render 'show.json.jb'
   end
 
-  
 
   def create
-    @product = Product.new( 
-      name: params[:name], 
+    @product = Product.new(
+      name: params[:name],
       price: params[:price],
-      image_url: params[:image_url],
-      description: params[:description]
-      )
+      description: params[:description],
+      image_url: params[:image_url]
+    )
     if @product.save
       render 'show.json.jb'
-    else 
-      render json: {errors: @product.errors.full_messages}, status: :unprocessable_entity #422
-    end   
+    else
+      render json: {errors: @product.errors.full_messages}, status: :unprocessable_entity
+    end
   end
 
   def update
     @product = Product.find(params[:id])
-    #use .find for id only but works the same
-
+    
     @product.name = params[:name] || @product.name
     @product.price = params[:price] || @product.price
-    @product.image_url = params[:image_url] || @product.image_url
     @product.description = params[:description] || @product.description
-    @product.save
+    @product.image_url = params[:image_url] || @product.image_url
 
-    render 'show.json.jb'
-  end
+    if @product.save
+      render 'show.json.jb'
+    else
+      render json: {errors: @product.errors.full_messages}, status: :unprocessable_entity #422
+    end
+  end 
 
   def destroy
-    # don't need to use an instance variable because it's not being passed anywhere
-    product = Product.find_by(id: params[:id])
-    product.destroy
-    render json: {message:"Product is obliterated"}
+    @product = Product.find(params[:id])
+    @product.destroy
+    render json: {message: "Product sent to the void"}
   end
+
 end 
+  

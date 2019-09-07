@@ -1,13 +1,3 @@
+render partial: "product.json.jb", locals: { product: @product }
 
-{
-  id: @product.id, 
-  name: @product.name, 
-  price: @product.price,
-  image_url: @product.image_url,
-  description: @product.description
-  formatted: {
-    price: @product.is_discounted?
-  }
-}
 
-#here we need an instance variable to access each instance variable
