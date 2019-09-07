@@ -2,4 +2,3 @@
   render partial: "product.json.jb", locals: { product: product }
 end
 
-#here we need to do a block variable to run through each hash
