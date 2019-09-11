@@ -21,7 +21,6 @@ class Api::ProductsController < ApplicationController
     else  
     render 'index.json.jb'
     end
-
   end
 
 

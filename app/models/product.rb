@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
   has_many :images
-
+  has_many :orders
 
   validates :name, :price, presence: true
   validates :name, uniqueness: true
@@ -22,5 +22,7 @@ class Product < ApplicationRecord
   def supplier
     Supplier.find_by(id: supplier_id)
   end
+
+  
 
 end
