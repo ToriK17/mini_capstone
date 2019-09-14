@@ -1,11 +1,26 @@
 class Product < ApplicationRecord
-  has_many :images
-  has_many :orders
+  
 
-  validates :name, :price, presence: true
-  validates :name, uniqueness: true
-  validates :price, numericality: { greater_than: 0 }
-  validates :description, length: { in: 10..500 }
+  belongs_to :supplier 
+  
+  has_many :carted_products
+  has_many :orders, through: :carted_products 
+
+  has_many :product_categories 
+  has_many :categories, through: :product_categories
+
+  has_many :images
+
+  
+
+  # validates :name, :price, presence: true
+  # validates :name, uniqueness: true
+  # validates :price, numericality: { greater_than: 0 }
+  # validates :description, length: { in: 10..500 }
+
+  def category_names
+    categories.map { |category| category.name }
+  end
 
   def is_discounted?
     price <= 10
@@ -17,10 +32,6 @@ class Product < ApplicationRecord
 
   def total
     price + tax
-  end
-
-  def supplier
-    Supplier.find_by(id: supplier_id)
   end
 
   
