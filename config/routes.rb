@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   
+  get "/products" => "products#index"
+  get "/products/new" => "products#new"
+  post "/products" => "products#create"
+  get "/products/:id/edit" => "products#edit"
+  get "/products/:id" => "products#show"
+
   # EXAMPLE HTML ROUTE
   # get "/photos" => "photos#index"
 
@@ -22,7 +28,6 @@ Rails.application.routes.draw do
     post "/users" => "users#create"
 
     
-
     post "/sessions" => "sessions#create"
 
     
