@@ -28,4 +28,21 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     render "show.html.erb"
   end
+
+  def update
+    @product = Product.find(params[:id])
+    @product.update(
+      name: params[:name], 
+      description: params[:description], 
+      price: params[:price], 
+      supplier_id: params[:supplier_id]
+      )
+    redirect_to "/products/"
+  end
+
+  def destroy
+    @product = Product.find(params[:id])
+    @product.destroy
+    redirect_to "/products"
+  end
 end
