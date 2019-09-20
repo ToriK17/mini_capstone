@@ -1,8 +1,31 @@
-<h1> All The Products </h1> 
-<%= @products.each do |product| %>
-  <h2><%= product.name %></h2>
-  <h4>Description: <%=product.description %> </h4>
-  <h5>Price: <%=product.price %></h5>
-  <h5>Sold By: <%=product.supplier.name %></h5>
-  <!-- <img src="/products/ <%=product.images %>" alt=""> -->
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">All of the Things </h1>
+    <p class="lead">You know you want all of these exciting items!</p>
+  </div>
+</div>
+
+<div class="card-columns">
+  <%= @products.each do |product| %>
+  <div class="card">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title"><%= product.name %></h5>
+      <p class="card-text"><%=product.description %></p>
+      <p class="card-text"><%=product.price %></p>
+      <p class="card-text"><%=product.supplier.name %></p>
+    </div>
   <% end %>
+</div>
+
+
+
+
+
+
+
+ 
+
+
+
+  
